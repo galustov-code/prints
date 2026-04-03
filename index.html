@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MG — Prints</title>
+  <meta name="description" content="Limited edition fine art prints by MG. Archival pigment prints on Hahnemühle FineArt Baryta." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #e8e4df;
+      --muted: #777;
+      --dim: #444;
+      --accent: #e8e4df;
+      --border: #222;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(232,228,223,0.15);
+      color: var(--text);
+    }
+
+    /* ── NAV ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.95), rgba(10,10,10,0));
+      pointer-events: none;
+    }
+
+    header > * { pointer-events: auto; }
+
+    .logo {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-link {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 48px 80px;
+      max-width: 560px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .hero p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 420px;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      padding: 0 48px 2px;
+    }
+
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 580px) {
+      .grid { grid-template-columns: 1fr; gap: 16px; padding: 0 20px; }
+      .hero { padding: 120px 20px 48px; }
+      header { padding: 0 20px; }
+      footer { padding: 48px 20px; }
+    }
+
+    /* ── PRINT CARD ── */
+    .card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--surface);
+      aspect-ratio: 2 / 3;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.03);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover .card-overlay { opacity: 1; }
+
+    .card-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+    }
+
+    .card-price {
+      margin-top: 12px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      padding: 64px 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      border-top: 1px solid var(--border);
+      margin-top: 2px;
+    }
+
+    @media (max-width: 700px) {
+      .info-strip { grid-template-columns: 1fr; gap: 32px; padding: 48px 20px; }
+    }
+
+    .info-item h3 {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 10px;
+    }
+
+    .info-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p, footer a {
+      font-size: 11px;
+      color: var(--dim);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    footer a:hover { color: var(--muted); }
+
+    /* ── LIGHTBOX ── */
+    .lb {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(6,6,6,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow-y: auto;
+    }
+
+    .lb.open { display: block; }
+
+    .lb-inner {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      min-height: 100vh;
+    }
+
+    @media (max-width: 860px) {
+      .lb-inner { grid-template-columns: 1fr; }
+      .lb-img-wrap { min-height: 60vh !important; }
+    }
+
+    .lb-img-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 60px;
+      min-height: 100vh;
+    }
+
+    .lb-img-wrap img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      box-shadow: 0 32px 100px rgba(0,0,0,0.5);
+    }
+
+    .lb-details {
+      padding: 80px 48px;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .lb-close {
+      position: fixed;
+      top: 28px;
+      right: 36px;
+      z-index: 210;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lb-close::before,
+    .lb-close::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 1px;
+      background: var(--muted);
+      transition: background 0.2s;
+    }
+
+    .lb-close::before { transform: rotate(45deg); }
+    .lb-close::after  { transform: rotate(-45deg); }
+    .lb-close:hover::before,
+    .lb-close:hover::after { background: var(--text); }
+
+    .lb-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .lb-caption {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .lb-cat {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .lb-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .lb-section-title {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 14px;
+    }
+
+    .lb-size-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 8px 0;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lb-size-row:last-child { border-bottom: none; }
+
+    .lb-size-label { color: var(--text); }
+
+    .lb-size-detail {
+      font-size: 11px;
+      color: var(--dim);
+      margin-left: 8px;
+    }
+
+    .lb-size-price {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lb-inquire {
+      display: block;
+      background: var(--text);
+      color: var(--bg);
+      text-decoration: none;
+      padding: 16px 28px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      text-align: center;
+      transition: opacity 0.25s;
+      margin-top: 4px;
+    }
+
+    .lb-inquire:hover { opacity: 0.85; }
+
+    .lb-note {
+      font-size: 11px;
+      color: var(--dim);
+      line-height: 1.7;
+    }
+
+    .lb-material {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">MG</a>
+  <a class="nav-link" href="mailto:galustov@gmail.com">Contact</a>
+</header>
+
+<section class="hero">
+  <h1>Prints</h1>
+  <p>Limited edition archival pigment prints on Hahnemühle FineArt Baryta 325 gsm. Signed and numbered. Available in three sizes.</p>
+</section>
+
+<div class="grid" id="grid"></div>
+
+<div class="info-strip">
+  <div class="info-item">
+    <h3>Editions</h3>
+    <p>Small prints are open edition. Medium is limited to 10. Large is limited to 5. Each print is signed, numbered, and includes a certificate of authenticity.</p>
+  </div>
+  <div class="info-item">
+    <h3>Paper &amp; Process</h3>
+    <p>Archival pigment print on Hahnemühle FineArt Baryta 325 gsm. Museum-quality inks rated for 200+ year longevity. Printed in Berlin.</p>
+  </div>
+  <div class="info-item">
+    <h3>Ordering</h3>
+    <p>All prints are produced to order. Please allow 10–14 business days for production and delivery. Worldwide shipping available. Inquire for details.</p>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 MG. All rights reserved.</p>
+  <a href="mailto:galustov@gmail.com">galustov@gmail.com</a>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <button class="lb-close" id="lb-close" aria-label="Close"></button>
+  <div class="lb-inner">
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="" />
+    </div>
+    <div class="lb-details">
+      <div>
+        <p class="lb-cat" id="lb-cat"></p>
+        <h2 class="lb-num" id="lb-num"></h2>
+      </div>
+      <p class="lb-caption" id="lb-caption"></p>
+      <div class="lb-divider"></div>
+      <div>
+        <p class="lb-section-title">Available sizes</p>
+        <div id="lb-sizes"></div>
+      </div>
+      <div class="lb-divider"></div>
+      <div>
+        <p class="lb-section-title">Material</p>
+        <p class="lb-material" id="lb-material"></p>
+      </div>
+      <div class="lb-divider"></div>
+      <a class="lb-inquire" id="lb-inquire" href="#">Inquire</a>
+      <p class="lb-note">Prints are produced to order. Please allow 10–14 business days. Worldwide shipping available.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const PRINTS = [
+    {
+      id: '001',
+      img: '001.jpg',
+      caption: 'Afghanistan, 2009',
+      material: 'Archival pigment print on Hahnemühle FineArt Baryta 325 gsm',
+      sizes: [
+        { label: 'Small', dim: '50 × 60 cm', edition: 'Open edition', price: '€900' },
+        { label: 'Medium', dim: '80 × 120 cm', edition: 'Edition of 10', price: '€2,500' },
+        { label: 'Large', dim: '120 × 180 cm', edition: 'Edition of 5', price: '€6,000' },
+      ]
+    },
+    {
+      id: '002',
+      img: '002.jpg',
+      caption: 'Afghanistan, 2009',
+      material: 'Archival pigment print on Hahnemühle FineArt Baryta 325 gsm',
+      sizes: [
+        { label: 'Small', dim: '50 × 60 cm', edition: 'Open edition', price: '€900' },
+        { label: 'Medium', dim: '80 × 120 cm', edition: 'Edition of 10', price: '€2,500' },
+        { label: 'Large', dim: '120 × 180 cm', edition: 'Edition of 5', price: '€6,000' },
+      ]
+    },
+    {
+      id: '003',
+      img: '003.jpg',
+      caption: 'Afghanistan, 2009',
+      material: 'Archival pigment print on Hahnemühle FineArt Baryta 325 gsm',
+      sizes: [
+        { label: 'Small', dim: '50 × 60 cm', edition: 'Open edition', price: '€900' },
+        { label: 'Medium', dim: '80 × 120 cm', edition: 'Edition of 10', price: '€2,500' },
+        { label: 'Large', dim: '120 × 180 cm', edition: 'Edition of 5', price: '€6,000' },
+      ]
+    },
+  ];
+
+  const CONTACT = 'galustov@gmail.com';
+
+  const grid = document.getElementById('grid');
+
+  PRINTS.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${p.img}" alt="#${p.id}" loading="lazy" />
+      <div class="card-overlay">
+        <span class="card-number">#${p.id}</span>
+        <span class="card-meta">${p.caption}</span>
+        <span class="card-price">From ${p.sizes[0].price}</span>
+      </div>
+    `;
+    card.addEventListener('click', () => openLB(i));
+    grid.appendChild(card);
+  });
+
+  const lb = document.getElementById('lb');
+
+  function openLB(i) {
+    const p = PRINTS[i];
+    document.getElementById('lb-img').src = p.img;
+    document.getElementById('lb-img').alt = '#' + p.id;
+    document.getElementById('lb-cat').textContent = p.caption;
+    document.getElementById('lb-num').textContent = '#' + p.id;
+    document.getElementById('lb-caption').textContent = p.caption;
+    document.getElementById('lb-material').textContent = p.material;
+
+    document.getElementById('lb-sizes').innerHTML = p.sizes.map(s => `
+      <div class="lb-size-row">
+        <span>
+          <span class="lb-size-label">${s.label}</span>
+          <span class="lb-size-detail">${s.dim} · ${s.edition}</span>
+        </span>
+        <span class="lb-size-price">${s.price}</span>
+      </div>
+    `).join('');
+
+    const subj = encodeURIComponent('Print inquiry: #' + p.id);
+    const body = encodeURIComponent('Hi,\n\nI\'m interested in print #' + p.id + '.\n\nPlease let me know about availability and next steps.\n\nThanks');
+    document.getElementById('lb-inquire').href = `mailto:${CONTACT}?subject=${subj}&body=${body}`;
+
+    lb.classList.add('open');
+    lb.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLB() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lb-close').addEventListener('click', closeLB);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+</script>
+</body>
+</html>
