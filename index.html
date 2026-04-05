@@ -29,7 +29,7 @@
       font-family: 'Inter', -apple-system, sans-serif;
       font-weight: 300;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.4;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -39,9 +39,12 @@
       color: var(--text);
     }
 
+    /* ── NAV ── */
     header {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 50;
       display: flex;
       align-items: center;
@@ -75,6 +78,7 @@
 
     .nav-link:hover { color: var(--text); }
 
+    /* ── HERO ── */
     .hero {
       padding: 160px 48px 80px;
       max-width: 560px;
@@ -93,10 +97,11 @@
     .hero p {
       font-size: 13px;
       color: var(--muted);
-      line-height: 1.8;
+      line-height: 1.5;
       max-width: 420px;
     }
 
+    /* ── GRID ── */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -115,6 +120,7 @@
       footer { padding: 48px 20px; }
     }
 
+    /* ── PRINT CARD ── */
     .card {
       position: relative;
       overflow: hidden;
@@ -124,13 +130,16 @@
     }
 
     .card img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
     }
 
-    .card:hover img { transform: scale(1.03); }
+    .card:hover img {
+      transform: scale(1.03);
+    }
 
     .card-overlay {
       position: absolute;
@@ -168,6 +177,7 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── INFO STRIP ── */
     .info-strip {
       padding: 64px 48px;
       display: grid;
@@ -192,9 +202,10 @@
     .info-item p {
       font-size: 13px;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.5;
     }
 
+    /* ── FOOTER ── */
     footer {
       padding: 48px;
       border-top: 1px solid var(--border);
@@ -214,6 +225,7 @@
 
     footer a:hover { color: var(--muted); }
 
+    /* ── LIGHTBOX ── */
     .lb {
       display: none;
       position: fixed;
@@ -263,12 +275,14 @@
 
     .lb-close {
       position: fixed;
-      top: 28px; right: 36px;
+      top: 28px;
+      right: 36px;
       z-index: 210;
       background: none;
       border: none;
       cursor: pointer;
-      width: 40px; height: 40px;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -278,7 +292,8 @@
     .lb-close::after {
       content: '';
       position: absolute;
-      width: 20px; height: 1px;
+      width: 20px;
+      height: 1px;
       background: var(--muted);
       transition: background 0.2s;
     }
@@ -296,10 +311,31 @@
       line-height: 1.1;
     }
 
-    .lb-caption { font-size: 13px; color: var(--muted); line-height: 1.8; }
-    .lb-cat { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
-    .lb-divider { height: 1px; background: var(--border); }
-    .lb-section-title { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; }
+    .lb-caption {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .lb-cat {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .lb-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .lb-section-title {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 14px;
+    }
 
     .lb-size-row {
       display: flex;
@@ -311,9 +347,19 @@
     }
 
     .lb-size-row:last-child { border-bottom: none; }
+
     .lb-size-label { color: var(--text); }
-    .lb-size-detail { font-size: 11px; color: var(--dim); margin-left: 8px; }
-    .lb-size-price { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+    .lb-size-detail {
+      font-size: 11px;
+      color: var(--dim);
+      margin-left: 8px;
+    }
+
+    .lb-size-price {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
 
     .lb-inquire {
       display: block;
@@ -332,8 +378,18 @@
     }
 
     .lb-inquire:hover { opacity: 0.85; }
-    .lb-note { font-size: 11px; color: var(--dim); line-height: 1.7; }
-    .lb-material { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    .lb-note {
+      font-size: 11px;
+      color: var(--dim);
+      line-height: 1.5;
+    }
+
+    .lb-material {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -369,6 +425,7 @@
   <p>&copy; 2026 Mikhail Galustov. All rights reserved.</p>
 </footer>
 
+<!-- LIGHTBOX -->
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-close" id="lb-close" aria-label="Close"></button>
   <div class="lb-inner">
@@ -436,6 +493,7 @@
   ];
 
   const CONTACT = 'galustov@gmail.com';
+
   const grid = document.getElementById('grid');
 
   PRINTS.forEach((p, i) => {
