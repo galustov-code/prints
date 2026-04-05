@@ -39,12 +39,9 @@
       color: var(--text);
     }
 
-    /* ── NAV ── */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 50;
       display: flex;
       align-items: center;
@@ -59,7 +56,7 @@
 
     .logo {
       font-family: 'Inter', sans-serif;
-      font-weight: 500;
+      font-weight: 700;
       font-size: 15px;
       letter-spacing: 0.25em;
       text-transform: uppercase;
@@ -78,7 +75,6 @@
 
     .nav-link:hover { color: var(--text); }
 
-    /* ── HERO ── */
     .hero {
       padding: 160px 48px 80px;
       max-width: 560px;
@@ -101,12 +97,11 @@
       max-width: 420px;
     }
 
-    /* ── GRID ── */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      padding: 0 48px 2px;
+      gap: 24px;
+      padding: 0 48px 24px;
     }
 
     @media (max-width: 960px) {
@@ -114,32 +109,28 @@
     }
 
     @media (max-width: 580px) {
-      .grid { grid-template-columns: 1fr; gap: 16px; padding: 0 20px; }
+      .grid { grid-template-columns: 1fr; gap: 20px; padding: 0 20px; }
       .hero { padding: 120px 20px 48px; }
       header { padding: 0 20px; }
       footer { padding: 48px 20px; }
     }
 
-    /* ── PRINT CARD ── */
     .card {
       position: relative;
       overflow: hidden;
       cursor: pointer;
       background: var(--surface);
-      aspect-ratio: 2 / 3;
+      aspect-ratio: 3 / 4;
     }
 
     .card img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
     }
 
-    .card:hover img {
-      transform: scale(1.03);
-    }
+    .card:hover img { transform: scale(1.03); }
 
     .card-overlay {
       position: absolute;
@@ -177,14 +168,13 @@
       letter-spacing: 0.04em;
     }
 
-    /* ── INFO STRIP ── */
     .info-strip {
       padding: 64px 48px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 48px;
       border-top: 1px solid var(--border);
-      margin-top: 2px;
+      margin-top: 24px;
     }
 
     @media (max-width: 700px) {
@@ -205,7 +195,6 @@
       line-height: 1.7;
     }
 
-    /* ── FOOTER ── */
     footer {
       padding: 48px;
       border-top: 1px solid var(--border);
@@ -225,7 +214,6 @@
 
     footer a:hover { color: var(--muted); }
 
-    /* ── LIGHTBOX ── */
     .lb {
       display: none;
       position: fixed;
@@ -275,14 +263,12 @@
 
     .lb-close {
       position: fixed;
-      top: 28px;
-      right: 36px;
+      top: 28px; right: 36px;
       z-index: 210;
       background: none;
       border: none;
       cursor: pointer;
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -292,8 +278,7 @@
     .lb-close::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 1px;
+      width: 20px; height: 1px;
       background: var(--muted);
       transition: background 0.2s;
     }
@@ -311,31 +296,10 @@
       line-height: 1.1;
     }
 
-    .lb-caption {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .lb-cat {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-
-    .lb-divider {
-      height: 1px;
-      background: var(--border);
-    }
-
-    .lb-section-title {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 14px;
-    }
+    .lb-caption { font-size: 13px; color: var(--muted); line-height: 1.8; }
+    .lb-cat { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+    .lb-divider { height: 1px; background: var(--border); }
+    .lb-section-title { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; }
 
     .lb-size-row {
       display: flex;
@@ -347,19 +311,9 @@
     }
 
     .lb-size-row:last-child { border-bottom: none; }
-
     .lb-size-label { color: var(--text); }
-
-    .lb-size-detail {
-      font-size: 11px;
-      color: var(--dim);
-      margin-left: 8px;
-    }
-
-    .lb-size-price {
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-    }
+    .lb-size-detail { font-size: 11px; color: var(--dim); margin-left: 8px; }
+    .lb-size-price { color: var(--muted); font-variant-numeric: tabular-nums; }
 
     .lb-inquire {
       display: block;
@@ -378,18 +332,8 @@
     }
 
     .lb-inquire:hover { opacity: 0.85; }
-
-    .lb-note {
-      font-size: 11px;
-      color: var(--dim);
-      line-height: 1.7;
-    }
-
-    .lb-material {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .lb-note { font-size: 11px; color: var(--dim); line-height: 1.7; }
+    .lb-material { font-size: 12px; color: var(--muted); line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -401,7 +345,7 @@
 
 <section class="hero">
   <h1>Prints</h1>
-  <p>Limited edition archival pigment prints on Hahnemühle FineArt Baryta 325 gsm. Signed and numbered. Available in three sizes.</p>
+  <p>Limited edition archival prints. Signed and numbered. Available in three sizes.</p>
 </section>
 
 <div class="grid" id="grid"></div>
@@ -413,7 +357,7 @@
   </div>
   <div class="info-item">
     <h3>Paper &amp; Process</h3>
-    <p>Archival pigment print on Hahnemühle FineArt Baryta 325 gsm. Museum-quality inks rated for 200+ year longevity. Printed in Berlin.</p>
+    <p>Archival pigment print on Hahnemühle FineArt Baryta 325 gsm. Museum-quality inks rated for 200+ year longevity. Printed in Paris.</p>
   </div>
   <div class="info-item">
     <h3>Ordering</h3>
@@ -426,7 +370,6 @@
   <a href="mailto:galustov@gmail.com">galustov@gmail.com</a>
 </footer>
 
-<!-- LIGHTBOX -->
 <div class="lb" id="lb" role="dialog" aria-modal="true">
   <button class="lb-close" id="lb-close" aria-label="Close"></button>
   <div class="lb-inner">
@@ -494,7 +437,6 @@
   ];
 
   const CONTACT = 'galustov@gmail.com';
-
   const grid = document.getElementById('grid');
 
   PRINTS.forEach((p, i) => {
