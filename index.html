@@ -3,8 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MG — Prints</title>
-  <meta name="description" content="Limited edition fine art prints by MG. Archival pigment prints on Hahnemühle FineArt Baryta." />
+  <title>Mikhail Galustov — Limited Edition Fine Art Prints | Photography</title>
+  <meta name="description" content="Discover limited edition archival pigment fine art prints by photographer Mikhail Galustov. Hahnemühle FineArt Baryta 325 gsm prints from Afghanistan 2009.">
+
+  <meta name="keywords" content="fine art prints, limited edition, archival pigment, Mikhail Galustov, photography, Hahnemühle, Afghanistan, art photography">
+  <meta name="author" content="Mikhail Galustov">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://prints.mishagalustov.com">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prints.mishagalustov.com">
+  <meta property="og:title" content="Mikhail Galustov — Limited Edition Fine Art Prints">
+  <meta property="og:description" content="Discover limited edition archival pigment fine art prints by photographer Mikhail Galustov. Hahnemühle FineArt Baryta 325 gsm prints from Afghanistan 2009.">
+  <meta property="og:image" content="https://prints.mishagalustov.com/002.jpg">
+  <meta property="og:site_name" content="Mikhail Galustov Fine Art Prints">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://prints.mishagalustov.com">
+  <meta property="twitter:title" content="Mikhail Galustov — Limited Edition Fine Art Prints">
+  <meta property="twitter:description" content="Discover limited edition archival pigment fine art prints by photographer Mikhail Galustov. Hahnemühle FineArt Baryta 325 gsm prints from Afghanistan 2009.">
+  <meta property="twitter:image" content="https://prints.mishagalustov.com/002.jpg">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://prints.mishagalustov.com/#website",
+        "url": "https://prints.mishagalustov.com",
+        "name": "Mikhail Galustov Fine Art Prints",
+        "description": "Limited edition archival pigment fine art prints by photographer Mikhail Galustov",
+        "publisher": { "@id": "https://prints.mishagalustov.com/#artist" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://prints.mishagalustov.com/#artist",
+        "name": "Mikhail Galustov",
+        "url": "https://prints.mishagalustov.com",
+        "jobTitle": "Photographer",
+        "email": "galustov@gmail.com"
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://prints.mishagalustov.com/#prints",
+        "url": "https://prints.mishagalustov.com",
+        "name": "Limited Edition Fine Art Prints",
+        "description": "Collection of 12 limited edition archival pigment prints from Afghanistan 2009",
+        "numberOfItems": 12
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;800&display=swap" rel="stylesheet" />
@@ -600,7 +655,7 @@
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <img src="${p.img}" alt="#${p.id}" loading="lazy" />
+      <img src="${p.img}" alt="Fine art photograph by Mikhail Galustov - ${p.caption} #${p.id}" loading="lazy" />
       <div class="card-overlay">
         <span class="card-number">#${p.id}</span>
         <span class="card-meta">${p.caption}</span>
@@ -616,7 +671,7 @@
   function openLB(i) {
     const p = PRINTS[i];
     document.getElementById('lb-img').src = p.img;
-    document.getElementById('lb-img').alt = '#' + p.id;
+    document.getElementById('lb-img').alt = 'Fine art photograph by Mikhail Galustov - ' + p.caption + ' #' + p.id;
     document.getElementById('lb-cat').textContent = p.caption;
     document.getElementById('lb-num').textContent = '#' + p.id;
     document.getElementById('lb-caption').textContent = p.caption;
